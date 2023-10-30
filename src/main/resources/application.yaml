@@ -1,0 +1,11 @@
+kafka:
+  bootstrap-servers: 'localhost:9092'
+server:
+  port: 8181
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: info

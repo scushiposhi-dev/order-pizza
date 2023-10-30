@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Pizza Order API
+  description: Pizza Order API
+  version: 1.0.0
+paths:
+  /v1/pizzaorder:
+    post:
+      description: order pizza
+      tags:
+        - PizzaOrder
+      operationId: pizzaOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaOrderDto'
+      responses:
+        200:
+          description: order created
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+        400:
+          description: bad request
+components:
+  schemas:
+    PizzaOrderDto:
+      type: object
+      description: pizza
+      required:
+        - type
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - MARGHERITA
+            - SALAMINO
+            - DELIZIOSA
+    GenericError:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        reason:
+          type: string
